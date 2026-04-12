@@ -1,0 +1,379 @@
+2026-04-12 20:37:59.211 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:37:59.212 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:37:59.214 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:37:59.214 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:37:59.215 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:37:59.216 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:37:59.216 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:37:59.217 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:37:59.217 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:37:59.217 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:37:59.217 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:20.493 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:38:20.495 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:38:20.495 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:38:20.495 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:20.497 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:38:20.497 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:38:20.498 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:38:20.498 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:38:20.499 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:38:20.499 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:20.499 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:38:20.499 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:30.966 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:38:30.967 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:38:30.968 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:38:30.968 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:30.970 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:38:30.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:38:30.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:38:30.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:38:30.972 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:38:30.972 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:38:30.973 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:38:30.973 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:39:30.137 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:39:30.138 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:39:30.139 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:39:30.140 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:39:30.141 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:39:30.142 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:39:30.142 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:39:30.142 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:39:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:39:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:39:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:39:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:42:39.810 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:42:39.811 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:42:39.812 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:42:39.812 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:42:39.814 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:42:39.814 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:42:39.815 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:42:39.815 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:42:39.816 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:42:39.816 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:42:39.816 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:42:39.816 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:43:29.641 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:43:29.643 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:43:29.646 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:43:29.646 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:43:29.669 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:43:29.669 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:43:29.670 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:43:29.670 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:43:29.671 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:43:29.671 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:43:29.672 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:43:29.672 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:44:34.252 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:44:34.253 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:44:34.254 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:44:34.254 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:44:34.258 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:44:34.258 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:44:34.258 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:44:34.258 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:44:34.259 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:44:34.259 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:44:34.260 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:44:34.260 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:50:25.092 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - ===========================================
+2026-04-12 20:50:25.092 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Distributed SELECT Query Execution Example
+2026-04-12 20:50:25.092 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - ===========================================
+
+2026-04-12 20:50:25.092 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+========== Example 1: Simple SELECT Optimization ==========
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Query Type: SELECT
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Read Tables: [users]
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has JOINs: false
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has GROUP BY: true
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has ORDER BY: true
+2026-04-12 20:50:25.106 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Aggregates: [COUNT]
+2026-04-12 20:50:25.107 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q1
+2026-04-12 20:50:25.109 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q1', operators=4, tables=[users], totalCost=4000}
+2026-04-12 20:50:25.109 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+Logical Query Plan: Q1
+==========================================
+SQL: SELECT u.id, u.name, COUNT(*) as order_count FROM users u GROUP BY u.id, u.name ORDER BY order_count DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[COUNT(*) as order_count, u.id, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort( ASC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=500, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [u.id, u.name], functions=[COUNT(*) AS COUNT_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_users, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(users)
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [users]
+
+2026-04-12 20:50:25.109 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Total Estimated Cost: 4000
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Total Operators: 4
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+========== Example 2: SELECT with Parallel JOINs ==========
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Query Type: SELECT
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Read Tables: [orders, users, products]
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Joined Tables: [orders, products]
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has JOINs: true
+2026-04-12 20:50:25.110 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q2
+2026-04-12 20:50:25.111 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q2', operators=6, tables=[orders, users, products], totalCost=6000}
+2026-04-12 20:50:25.111 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+Logical Query Plan: Q2
+==========================================
+SQL: SELECT u.name, o.id, o.amount, p.price FROM users u INNER JOIN orders o ON u.id = o.user_id INNER JOIN products p ON o.product_id = p.id WHERE o.amount > 100 ORDER BY o.amount DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[p.price, u.name, o.id, o.amount])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(o.amount DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ JOIN[id=join_1, rows=1000, cost=1000]
+│   │      ├─ Description: Join(INNER orders <-> orders ON u.id = o.user_id INNER JOIN products p ON o.product_id = p.id , strategy=NESTED_LOOP)
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ FILTER[id=filter_where, rows=0, cost=1000]
+│   │   │      ├─ Description: Filter(WHERE_CLAUSE: o.amount > 100)
+│   │   │      └─ Estimated Cost: 1000
+│   │   │   │   ├─ SCAN[id=scan_orders, rows=1000, cost=1000]
+│   │   │   │      ├─ Description: Scan(orders)
+│   │   │   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_orders, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(orders)
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 6
+Involved Tables: [orders, users, products]
+
+2026-04-12 20:50:25.111 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Number of JOINs: 1
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.JoinOptimizer - Optimizing 1 joins for distributed execution
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Join Strategy Recommendations:
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   Join(INNER orders <-> orders ON u.id = o.user_id INNER JOIN products p ON o.product_id = p.id , strategy=HASH_JOIN) strategy: HASH_JOIN
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.JoinOptimizer - Analyzing join dependencies for parallelization
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.JoinOptimizer - Parallelization potential: {:.2%}
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Parallelization Plan: JoinParallelizationPlan{parallelizable=1, sequential=0, potential=100.00%}
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.JoinOptimizer - Analyzing join dependencies for parallelization
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.JoinOptimizer - Parallelization potential: {:.2%}
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Recommended Strategy: Highly parallelizable - use distributed hash join strategy
+2026-04-12 20:50:25.112 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+========== Example 3: SELECT with Aggregation ==========
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Query Type: SELECT
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Aggregates: [AVG, MAX, COUNT, SUM]
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has GROUP BY: true
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has HAVING: true
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has ORDER BY: true
+2026-04-12 20:50:25.113 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q3
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q3', operators=8, tables=[orders, users], totalCost=8000}
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Operator Breakdown:
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   SCAN operators: 2
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   FILTER operators: 2
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   JOIN operators: 1
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   AGGREGATE operators: 1
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   SORT operators: 1
+2026-04-12 20:50:25.114 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample -   PROJECT operators: 1
+2026-04-12 20:50:25.115 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+Logical Query Plan: Q3
+==========================================
+SQL: SELECT   u.region,   COUNT(DISTINCT u.id) as num_users,   SUM(o.amount) as total_sales,   AVG(o.amount) as avg_order,   MAX(o.amount) as max_order FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE o.created_date >= '2024-01-01' GROUP BY u.region HAVING SUM(o.amount) > 10000 ORDER BY total_sales DESC LIMIT 10
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[COUNT(DISTINCT u.id) as num_users, SUM(o.amount) as total_sales, AVG(o.amount) as avg_order, MAX(o.amount) as max_order, u.region])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(total_sales DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ FILTER[id=filter_having, rows=0, cost=1000]
+│   │      ├─ Description: Filter(HAVING_CLAUSE: SUM(o.amount) > 10000)
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │   │      ├─ Description: Aggregate(GROUP BY [u.region], functions=[MAX(*) AS MAX_*, SUM(*) AS SUM_*, COUNT(*) AS COUNT_*, AVG(*) AS AVG_*])
+│   │   │      └─ Estimated Cost: 1000
+│   │   │   │   ├─ JOIN[id=join_1, rows=1000, cost=1000]
+│   │   │   │      ├─ Description: Join(LEFT orders <-> orders ON u.id = o.user_id , strategy=NESTED_LOOP)
+│   │   │   │      └─ Estimated Cost: 1000
+│   │   │   │   │   ├─ FILTER[id=filter_where, rows=0, cost=1000]
+│   │   │   │   │      ├─ Description: Filter(WHERE_CLAUSE: o.created_date >= '2024-01-01')
+│   │   │   │   │      └─ Estimated Cost: 1000
+│   │   │   │   │   │   ├─ SCAN[id=scan_orders, rows=1000, cost=1000]
+│   │   │   │   │   │      ├─ Description: Scan(orders)
+│   │   │   │   │   │      └─ Estimated Cost: 1000
+│   │   │   │   │   ├─ SCAN[id=scan_orders, rows=1000, cost=1000]
+│   │   │   │   │      ├─ Description: Scan(orders)
+│   │   │   │   │      └─ Estimated Cost: 1000
+Total Operators: 8
+Involved Tables: [orders, users]
+
+2026-04-12 20:50:25.115 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+========== Example 4: Nested Query Optimization ==========
+2026-04-12 20:50:25.115 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Main Query Type: SELECT
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Has Subqueries: false
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Max Nesting Depth: 2
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SubqueryExtractor - Found 0 subqueries
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Extracted Subqueries: 0
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q4
+2026-04-12 20:50:25.116 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q4', operators=6, tables=[(, users], totalCost=6000}
+2026-04-12 20:50:25.117 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+Logical Query Plan: Q4
+==========================================
+SQL: SELECT u.id, u.name, order_summary.total_amount FROM users u JOIN (  SELECT user_id, SUM(amount) as total_amount, COUNT(*) as num_orders   FROM orders   GROUP BY user_id   HAVING COUNT(*) > 5) order_summary ON u.id = order_summary.user_id WHERE u.active = true ORDER BY order_summary.total_amount DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[u.id, order_summary.total_amount, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort( ASC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ FILTER[id=filter_having, rows=0, cost=1000]
+│   │      ├─ Description: Filter(HAVING_CLAUSE: COUNT(*) > 5))
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │   │      ├─ Description: Aggregate(GROUP BY [user_id], functions=[COUNT(*) AS COUNT_*, SUM(*) AS SUM_*])
+│   │   │      └─ Estimated Cost: 1000
+│   │   │   │   ├─ FILTER[id=filter_where, rows=0, cost=1000]
+│   │   │   │      ├─ Description: Filter(WHERE_CLAUSE: u.active = true)
+│   │   │   │      └─ Estimated Cost: 1000
+│   │   │   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │   │   │      ├─ Description: Scan(()
+│   │   │   │   │      └─ Estimated Cost: 1000
+Total Operators: 6
+Involved Tables: [(, users]
+
+2026-04-12 20:50:25.117 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - 
+========== Example 5: Distributed Execution ==========
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Parsed Query: Query{id='Q_DISTRIBUTED', type=SELECT, readTables=[orders, users], writeTables=[], affectedDatabases=[], joinedTables=[orders], aggregates=[SUM], hasOrderBy=true, hasGroupBy=true}
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q_DISTRIBUTED
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q_DISTRIBUTED', operators=7, tables=[orders, users], totalCost=7000}
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Logical Plan: LogicalQueryPlan{queryId='Q_DISTRIBUTED', operators=7, tables=[orders, users], totalCost=7000}
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - DistributedSelectExecutor initialized with 4 nodes
+2026-04-12 20:50:25.118 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Cluster Status:
+===============
+Total Nodes: 4
+Active Nodes: 4
+Total Capacity: 4000000 rows/sec
+
+Nodes:
+  Node[node-1 @ 10.0.0.1:5432, capacity=1000000 rows/sec]
+  Node[node-2 @ 10.0.0.2:5432, capacity=1000000 rows/sec]
+  Node[node-3 @ 10.0.0.3:5432, capacity=1000000 rows/sec]
+  Node[node-4 @ 10.0.0.4:5432, capacity=1000000 rows/sec]
+
+2026-04-12 20:50:25.119 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Creating distributed plan for: Q_DISTRIBUTED
+2026-04-12 20:50:25.119 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Distributed plan created: org.nyxdb.parser.core.parallel.DistributedSelectExecutor$DistributedPlan@45dcfd93
+2026-04-12 20:50:25.120 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Distributed Execution Plan for Q_DISTRIBUTED
+============================================
+Execution Nodes: 4
+  Node[node-1 @ 10.0.0.1:5432, capacity=1000000 rows/sec]
+  Node[node-2 @ 10.0.0.2:5432, capacity=1000000 rows/sec]
+  Node[node-3 @ 10.0.0.3:5432, capacity=1000000 rows/sec]
+  Node[node-4 @ 10.0.0.4:5432, capacity=1000000 rows/sec]
+
+Operator Placement:
+  project_final -> node-1
+  join_1 -> node-4
+  agg_1 -> node-3
+  scan_orders -> node-3
+  filter_where -> node-1
+  sort_1 -> node-2
+
+Parallel Degree: 4
+Estimated Execution Time: 1ms
+
+2026-04-12 20:50:25.120 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing distributed plan: Q_DISTRIBUTED
+2026-04-12 20:50:25.120 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Project(columns=[u.id, u.name, SUM(o.amount) as total_spent]) on node-1
+2026-04-12 20:50:25.132 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Sort(total_spent DESC) on node-2
+2026-04-12 20:50:25.145 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Aggregate(GROUP BY [u.id, u.name], functions=[SUM(*) AS SUM_*]) on node-3
+2026-04-12 20:50:25.158 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Join(LEFT orders <-> orders ON u.id = o.user_id , strategy=NESTED_LOOP) on node-4
+2026-04-12 20:50:25.170 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Filter(WHERE_CLAUSE: o.created_date >= '2024-01-01') on node-1
+2026-04-12 20:50:25.183 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Scan(orders) on node-3
+2026-04-12 20:50:25.195 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Executing Scan(orders) on node-3
+2026-04-12 20:50:25.207 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExecutor - Distributed execution completed in 87ms
+2026-04-12 20:50:25.208 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Execution Result: ExecutionResult{query=Q_DISTRIBUTED, success=true, time=87ms, nodes=4, rows=0}
+2026-04-12 20:50:25.208 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Actual Execution Time: 87ms (estimated: 1ms)
+2026-04-12 20:50:25.208 [org.nyxdb.parser.core.parallel.DistributedSelectExample.main()] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Parallel Efficiency: {:.2%}
+2026-04-12 20:50:32.092 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:50:32.093 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:50:32.094 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:50:32.094 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:50:32.098 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:50:32.098 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:50:32.098 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:50:32.098 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:50:32.099 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:50:32.099 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:50:32.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:50:32.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:51:18.588 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 20:51:18.589 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:51:18.590 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:51:18.590 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:51:18.593 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 20:51:18.593 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-12 20:51:18.594 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:51:18.594 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 20:51:18.595 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 20:51:18.595 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 20:51:18.595 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 20:51:18.595 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:42:50.380 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 21:42:50.382 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:42:50.384 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:42:50.384 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:42:50.388 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 21:42:50.388 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:42:50.388 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:42:50.389 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:42:50.389 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:42:50.390 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:42:50.390 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:44:47.625 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 21:44:47.627 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:44:47.629 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:44:47.629 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:44:47.632 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 21:44:47.634 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:44:47.634 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:44:47.635 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:44:47.635 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:44:47.636 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:44:47.636 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:49:00.963 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 21:49:00.965 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:49:00.966 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:49:00.966 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:49:00.969 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 21:49:00.969 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:49:00.970 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:49:00.970 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:49:00.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:49:00.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:49:00.972 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:50:15.439 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 21:50:15.440 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:50:15.442 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:50:15.442 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:50:15.444 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 21:50:15.445 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:50:15.445 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:50:15.446 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:50:15.446 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:50:15.447 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:50:15.447 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:50:35.042 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:50:35.043 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:51:26.672 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-12 21:51:26.674 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:51:26.675 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:51:26.675 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:51:26.678 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-12 21:51:26.678 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:51:26.679 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-12 21:51:26.680 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-12 21:51:26.680 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-12 21:51:26.681 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-12 21:51:26.681 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages

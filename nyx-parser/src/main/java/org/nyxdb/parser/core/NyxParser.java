@@ -13,6 +13,9 @@ import org.nyxdb.parser.core.models.DatabaseInfo;
 import org.nyxdb.parser.core.models.ForeignKeyInfo;
 import org.nyxdb.parser.core.models.InsertInfo;
 
+// ANTLR-generated classes
+import org.antlr.v4.runtime.tree.ParseTree;
+
 public class NyxParser {
 
     private final List<TableInfo> tables = new ArrayList<>();

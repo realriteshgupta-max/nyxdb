@@ -72,6 +72,14 @@ public class NyxFlightService extends NoOpFlightSqlProducer {
     }
 
     /**
+     * Convenience constructor that creates an in-memory DuckDB manager.
+     * This avoids forcing callers (tests) to reference `DuckDBManager`.
+     */
+    public NyxFlightService() {
+        this(DuckDBManager.createInMemoryManager());
+    }
+
+    /**
      * Execute a batch of SQL statements. Each parsed Query is executed in order.
      * SELECT statements will print up to the first 10 rows to stdout.
      */
@@ -202,7 +210,38 @@ public class NyxFlightService extends NoOpFlightSqlProducer {
                     .toRuntimeException());
             return;
         }
-        // execute the SQL associated with the prepared handle and stream results
+
+        // Check if this is a SELECT query or a DDL/DML statement
+        String trimmedSql = sql.trim().toUpperCase();
+        if (!trimmedSql.startsWith("SELECT")) {
+            // For non-SELECT statements (CREATE, INSERT, UPDATE, etc), execute and return
+            // empty result
+            try (Connection c = dbManager.getConnection(); Statement st = c.createStatement()) {
+                logger.info("Executing {} statement via Flight: {}", trimmedSql.split("\\s+")[0], sql);
+                int rowsAffected = st.executeUpdate(sql);
+                logger.info("✓ Successfully executed statement, {} rows affected", rowsAffected);
+
+                // Return properly formatted empty result set for DDL/DML
+                Schema schema = textRowSchema();
+                try (VectorSchemaRoot root = VectorSchemaRoot.create(schema, getAllocator())) {
+                    VarCharVector vec = (VarCharVector) root.getVector("row");
+                    vec.allocateNew(0);
+                    root.setRowCount(0);
+
+                    OutboundStreamListener out = (OutboundStreamListener) listener;
+                    out.start(root, null, new IpcOption());
+                    out.putNext();
+                }
+            } catch (Exception e) {
+                logger.error("✗ Error executing non-SELECT statement: {} - Error: {}", sql, e.getMessage(), e);
+                listener.error(
+                        CallStatus.INTERNAL.withDescription("SQL Error: " + e.getMessage()).toRuntimeException());
+            }
+            return;
+        }
+
+        // execute the SQL associated with the prepared handle and stream results (for
+        // SELECT only)
         try (Connection c = dbManager.getConnection();
                 Statement st = c.createStatement();
                 ResultSet rs = st.executeQuery(sql)) {
@@ -273,10 +312,12 @@ public class NyxFlightService extends NoOpFlightSqlProducer {
             FlightProducer.CallContext context, FlightProducer.StreamListener<Result> listener) {
         String sql = request.getQuery();
         String handle = UUID.randomUUID().toString();
+        logger.info("Creating prepared statement: handle={}, SQL: {}", handle, sql);
         preparedStatements.put(handle, sql);
         FlightSql.ActionCreatePreparedStatementResult res = FlightSql.ActionCreatePreparedStatementResult.newBuilder()
                 .setPreparedStatementHandle(com.google.protobuf.ByteString.copyFromUtf8(handle))
                 .build();
+        logger.info("✓ Prepared statement created successfully");
         listener.onNext(new Result(res.toByteArray()));
         listener.onCompleted();
     }

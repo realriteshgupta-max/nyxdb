@@ -15,8 +15,11 @@ public class TruncateVisitor extends NyxDbBaseVisitor<Void> {
     @Override
     public Void visitTruncateTableStmt(NyxDbParser.TruncateTableStmtContext ctx) {
         String fullName = null;
+        System.out.println(
+                "[TruncateVisitor] visitTruncateTableStmt called; ctx=" + (ctx == null ? "null" : ctx.getText()));
         if (ctx.qualifiedName() != null) {
             java.util.List<NyxDbParser.IdentifierContext> ids = ctx.qualifiedName().identifier();
+            System.out.println("[TruncateVisitor] qualifiedName ids=" + ids);
             if (ids != null && !ids.isEmpty()) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < ids.size(); i++) {
@@ -28,6 +31,7 @@ public class TruncateVisitor extends NyxDbBaseVisitor<Void> {
             }
         }
         truncatedTables.add(fullName);
+        System.out.println("[TruncateVisitor] added fullName='" + fullName + "' => total=" + truncatedTables.size());
         return super.visitTruncateTableStmt(ctx);
     }
 }

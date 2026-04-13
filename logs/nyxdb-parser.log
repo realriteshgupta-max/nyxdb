@@ -193,3 +193,127 @@ Caused by: java.lang.UnsupportedOperationException
 	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
 	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
 	... 14 more
+2026-04-13 12:05:43.871 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 12:09:47.054 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 12:18:49.946 [org.nyxdb.flight.NyxFlightServerStarter.main()] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:19:16.868 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:21:14.084 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:25:37.032 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:38:52.239 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:49:26.011 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:59:29.810 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://0.0.0.0:8815
+2026-04-13 12:59:29.811 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 12:59:31.000 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 12:59:31.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 12:59:31.032 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 12:59:31.034 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 12:59:31.034 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 12:59:31.036 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 12:59:31.036 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 12:59:31.036 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 12:59:31.036 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 13:01:46.592 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 13:01:48.422 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 13:01:48.451 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 13:01:48.451 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 13:01:48.454 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 13:01:48.454 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 13:01:48.455 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 13:01:48.455 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 13:01:48.455 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 13:01:48.456 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 13:01:48.546 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815
+2026-04-13 14:14:48.814 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 14:14:49.988 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 14:14:50.017 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 14:14:50.018 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 14:14:50.021 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 14:14:50.021 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 14:14:50.022 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:14:50.022 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 14:14:50.023 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:14:50.023 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 14:14:50.117 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815
+2026-04-13 14:20:02.289 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 14:20:04.151 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 14:20:04.179 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 14:20:04.180 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 14:20:04.182 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 14:20:04.183 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 14:20:04.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:20:04.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 14:20:04.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:20:04.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 14:20:04.276 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815
+2026-04-13 14:44:11.309 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionExample - EXAMPLE 1: Basic Parallel Queries
+2026-04-13 14:44:11.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionExample - ==================================
+2026-04-13 14:45:50.849 [main] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - ===========================================
+2026-04-13 14:45:50.850 [main] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - Distributed SELECT Query Execution Example
+2026-04-13 14:45:50.850 [main] INFO  org.nyxdb.parser.core.parallel.DistributedSelectExample - ===========================================
+
+2026-04-13 14:53:36.123 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 14:53:37.984 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 14:53:38.010 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 14:53:38.011 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 14:53:38.013 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 14:53:38.013 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 14:53:38.014 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:53:38.014 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 14:53:38.015 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:53:38.015 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 14:53:38.106 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815
+2026-04-13 14:54:51.005 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 14:54:52.154 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 14:54:52.179 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 14:54:52.180 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 14:54:52.182 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 14:54:52.182 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 14:54:52.183 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:54:52.183 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 14:54:52.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 14:54:52.184 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 14:54:52.275 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815

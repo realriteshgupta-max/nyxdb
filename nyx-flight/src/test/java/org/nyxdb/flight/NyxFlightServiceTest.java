@@ -34,6 +34,7 @@ public class NyxFlightServiceTest {
         } finally {
             manager.closeConnection(c);
             manager.shutdown();
+            service.close();
         }
     }
 }

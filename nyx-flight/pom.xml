@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -24,8 +24,20 @@
     </repositories>
 
     <properties>
-        <arrow.version>19.0.0</arrow.version>
+        <arrow.version>16.0.0</arrow.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.130.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Apache Arrow Flight SQL (single artifact provided) -->
@@ -34,6 +46,13 @@
             <artifactId>flight-sql</artifactId>
             <version>${arrow.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <!-- Use unsafe allocator instead of Netty to avoid Netty initialization issues on macOS/Java 25 -->
+        <dependency>
+            <groupId>org.apache.arrow</groupId>
+            <artifactId>arrow-memory-unsafe</artifactId>
+            <version>${arrow.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Local project modules -->
@@ -66,6 +85,13 @@
             <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
+        <!-- Arrow Flight SQL JDBC driver -->
+        <dependency>
+            <groupId>org.apache.arrow</groupId>
+            <artifactId>flight-sql-jdbc-driver</artifactId>
+            <version>16.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -75,7 +101,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <argLine>--enable-native-access=ALL-UNNAMED</argLine>
+                    <argLine>--add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
                     <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>

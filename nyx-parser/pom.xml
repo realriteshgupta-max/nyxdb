@@ -52,15 +52,14 @@
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
-                        <id>generate-sources</id>
+                        <id>antlr</id>
                         <goals>
                             <goal>antlr4</goal>
                         </goals>
                         <configuration>
+                            <visitor>true</visitor>
                             <sourceDirectory>${project.basedir}/src/main/antlr4</sourceDirectory>
-                            <arguments>
-                                <argument>-visitor</argument>
-                            </arguments>
+                            <outputDirectory>${project.build.directory}/generated-sources/antlr4</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -71,6 +70,7 @@
                 <version>3.3.0</version>
                 <executions>
                     <execution>
+                        <id>add-antlr-source</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
@@ -85,14 +85,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <useModulePath>false</useModulePath>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
@@ -101,6 +93,16 @@
                     <compilerArgs>
                         <arg>-Xlint:-options</arg>
                     </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                    <argLine>--enable-native-access=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>

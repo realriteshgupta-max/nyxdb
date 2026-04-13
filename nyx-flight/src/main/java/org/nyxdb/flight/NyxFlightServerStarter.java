@@ -19,17 +19,26 @@ public class NyxFlightServerStarter {
 
     public static void main(String[] args) throws Exception {
         // create an in-memory DuckDB manager (temporary per-connection instance)
-        DuckDBManager manager = DuckDBManager.createInMemoryManager();
-        NyxFlightService service = new NyxFlightService(manager);
+        NyxFlightService service = new NyxFlightService();
         // start a Flight server on port 8815 using the service allocator.
         // Creating the allocator may trigger platform-specific native initialization
         // (Netty/Arrow). Catch initialization errors so the demo can still run.
         FlightServer server = null;
         try {
-            Location location = Location.forGrpcInsecure("0.0.0.0", 8815);
+
+            // Example: create a table, insert data, then select
+            String create = "CREATE TABLE IF NOT EXISTS users (id INTEGER, name VARCHAR);";
+            String insert1 = "INSERT INTO users VALUES (1, 'alice');";
+            String insert2 = "INSERT INTO users VALUES (2, 'bob');";
+            String select = "SELECT * FROM users ORDER BY id;";
+            service.executeSqlBatch(create + " " + insert1 + " " + insert2 + " " + select + " ");
+
+            Location location = Location.forGrpcInsecure("127.0.0.1", 8815);
             server = FlightServer.builder(service.getAllocator(), location, service).build();
             server.start();
             logger.info("Nyx Flight server started at {}", location.getUri());
+
+            server.awaitTermination();
         } catch (Throwable t) {
             logger.error("Could not start Flight server (allocator init failed): {}", t);
             server = null;

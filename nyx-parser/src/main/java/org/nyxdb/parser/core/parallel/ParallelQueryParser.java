@@ -4,6 +4,8 @@ import org.nyxdb.parser.core.NyxParser;
 import org.nyxdb.parser.core.models.TableInfo;
 import org.nyxdb.parser.core.models.InsertInfo;
 import org.nyxdb.parser.core.models.DatabaseInfo;
+import org.nyxdb.parser.core.parallel.Query;
+import org.nyxdb.parser.core.parallel.QueryType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,9 +34,9 @@ public class ParallelQueryParser {
     // Map normalized subquery SQL -> generated subId to avoid duplicate extraction
     private final java.util.Map<String, String> subSqlToId = new java.util.HashMap<>();
 
-    public List<Query> parseQueryBatch(String sqlBatch) {
+    public List<org.nyxdb.parser.core.parallel.Query> parseQueryBatch(String sqlBatch) {
         logger.info("Parsing query batch");
-        List<Query> queries = new ArrayList<>();
+        List<org.nyxdb.parser.core.parallel.Query> queries = new ArrayList<>();
         subqueryMap.clear();
         idQueryMap.clear();
         subSqlToId.clear();

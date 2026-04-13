@@ -1,91 +1,160 @@
-"""Flight SQL client — tries ADBC then Flight SQL
+#!/Users/ritesh/venv/bin/python
+"""Flight SQL client that creates a table, inserts rows, and queries them back.
 
-This script connects to a Flight SQL server and runs a query.
-It prefers ADBC (pyarrow.adbc) when available, otherwise falls back
-to pyarrow.flight.sql.
+The script prefers the standalone ADBC Flight SQL driver when available and
+falls back to the Python Flight SQL API when that driver is not installed.
+
+Default interpreter: /Users/ritesh/venv/bin/python
 """
-import sys
+
 import argparse
+import sys
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--host", default="127.0.0.1")
-parser.add_argument("--port", default=8815, type=int)
-parser.add_argument("--query", default="SELECT * FROM users LIMIT 10")
-args = parser.parse_args()
 
-uri = f"grpc+tcp://{args.host}:{args.port}"
+DEFAULT_ROWS = [
+    (1, "Alice"),
+    (2, "Bob"),
+    (3, "Carol"),
+]
 
-def try_adbc(uri, query):
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", default=8815, type=int)
+    parser.add_argument("--table", default="users")
+    parser.add_argument("--query", default=None,
+                        help="Optional final SELECT query. Defaults to selecting all inserted rows.")
+    return parser.parse_args()
+
+
+def create_statements(table_name, final_query=None):
+    create_table = f"CREATE TABLE IF NOT EXISTS {table_name} (id INTEGER, name VARCHAR)"
+    clear_table = f"DELETE FROM {table_name}"
+    inserts = [
+        f"INSERT INTO {table_name} VALUES ({row_id}, '{name}')"
+        for row_id, name in DEFAULT_ROWS
+    ]
+    select_query = final_query or f"SELECT id, name FROM {table_name} ORDER BY id"
+    return create_table, clear_table, inserts, select_query
+
+
+def print_rows(result):
+    if hasattr(result, "to_pandas"):
+        print(result.to_pandas())
+        return
+    if hasattr(result, "fetchall"):
+        for row in result.fetchall():
+            print(row)
+        return
+    print(result)
+
+
+def run_adbc_workflow(uri, table_name, final_query=None):
     try:
-        import pyarrow.adbc as adbc
-    except Exception as e:
-        return False, f"ADBC not available: {e}"
+        import adbc_driver_flightsql.dbapi as adbc_dbapi
+    except Exception as exc:
+        return False, f"ADBC not available: {exc}"
 
-    # Try common driver names
-    for driver in ("flight", "flight-sql", "adbc-flight", "adbc-flight-sql"):
-        try:
-            conn = adbc.connect(driver, {"uri": uri})
-            cur = conn.cursor()
-            cur.execute(query)
-            if hasattr(cur, "fetch_arrow_table"):
-                tbl = cur.fetch_arrow_table()
-                print(tbl.to_pandas())
-            elif hasattr(cur, "fetchall"):
-                for r in cur.fetchall():
-                    print(r)
-            cur.close()
-            conn.close()
-            return True, "OK"
-        except Exception:
-            continue
-    return False, "No ADBC Flight SQL driver found"
-
-def try_flight_sql(uri, query):
+    create_table, clear_table, inserts, select_query = create_statements(table_name, final_query)
+    conn = None
+    cur = None
     try:
-        from pyarrow import flight
-    except Exception as e:
-        return False, f"pyarrow Flight not available: {e}"
+        conn = adbc_dbapi.connect(uri)
+        cur = conn.cursor()
 
-    try:
-        client = flight.connect(uri)
-        # Use FlightDescriptor command form so server reads descriptor.getCommand()
-        descriptor = flight.FlightDescriptor.for_command(query.encode())
-        info = client.get_flight_info(descriptor)
-        # If no endpoints, try do_action (execute)
-        if not info.endpoints:
-            # try as action (for UPDATE/INSERT)
-            try:
-                for res in client.do_action(flight.Action("execute", query.encode())):
-                    print(res.to_pybytes().decode())
-                return True, "OK"
-            except Exception as e:
-                return False, str(e)
+        print("Connected via standalone ADBC Flight SQL driver")
+        cur.execute(create_table)
+        print(f"Created table '{table_name}'")
 
-        ticket = info.endpoints[0].ticket
-        # ticket may be None; if so, construct ticket with SQL bytes
-        if ticket is None or ticket.ticket is None:
-            t = flight.Ticket(query.encode())
+        cur.execute(clear_table)
+        print(f"Cleared existing rows from '{table_name}'")
+
+        for statement in inserts:
+            cur.execute(statement)
+        print(f"Inserted {len(DEFAULT_ROWS)} rows into '{table_name}'")
+
+        cur.execute(select_query)
+        print(f"Query results for: {select_query}")
+
+        if hasattr(cur, "fetch_arrow_table"):
+            print_rows(cur.fetch_arrow_table())
         else:
-            t = ticket
-
-        reader = client.do_get(t)
-        table = reader.read_all()
-        try:
-            print(table.to_pandas())
-        except Exception:
-            print(table)
+            print_rows(cur)
         return True, "OK"
-    except Exception as e:
-        return False, str(e)
+    except Exception as exc:
+        return False, str(exc)
+    finally:
+        if cur is not None:
+            try:
+                cur.close()
+            except Exception:
+                pass
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+
+def run_pyarrow_flight_sql_workflow(uri, table_name, final_query=None):
+    try:
+        from pyarrow.flight import sql
+    except Exception as exc:
+        return False, f"pyarrow.flight.sql not available: {exc}"
+
+    create_table, clear_table, inserts, select_query = create_statements(table_name, final_query)
+    client = None
+    cursor = None
+    try:
+        client = sql.connect(uri)
+        cursor = client.cursor()
+
+        cursor.execute(create_table)
+        print(f"Created table '{table_name}'")
+
+        cursor.execute(clear_table)
+        print(f"Cleared existing rows from '{table_name}'")
+
+        for statement in inserts:
+            cursor.execute(statement)
+        print(f"Inserted {len(DEFAULT_ROWS)} rows into '{table_name}'")
+
+        cursor.execute(select_query)
+        print(f"Query results for: {select_query}")
+        if hasattr(cursor, "fetchall"):
+            print_rows(cursor)
+        else:
+            print_rows(cursor.fetch_arrow_table())
+        return True, "OK"
+    except Exception as exc:
+        return False, str(exc)
+    finally:
+        if cursor is not None:
+            try:
+                cursor.close()
+            except Exception:
+                pass
+        if client is not None:
+            try:
+                client.close()
+            except Exception:
+                pass
+
 
 if __name__ == "__main__":
-    ok, msg = try_adbc(uri, args.query)
+    args = parse_args()
+    uri = f"grpc+tcp://{args.host}:{args.port}"
+
+    ok, message = run_adbc_workflow(uri, args.table, args.query)
     if ok:
         sys.exit(0)
-    print("ADBC attempt failed:", msg)
-    ok, msg = try_flight_sql(uri, args.query)
+    print("ADBC attempt failed:", message)
+
+    ok, message = run_pyarrow_flight_sql_workflow(uri, args.table, args.query)
     if ok:
         sys.exit(0)
-    print("Flight SQL attempt failed:", msg)
-    print("Ensure pyarrow with Flight/ADBC support is installed and the Flight server is reachable.")
+
+    print("Flight SQL attempt failed:", message)
+    print("Ensure pyarrow with ADBC or Flight SQL support is installed and the Flight server is reachable.")
     sys.exit(2)

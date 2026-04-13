@@ -1,8 +1,11 @@
 package org.nyxdb.duckdb;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentHashMap;
@@ -44,12 +47,20 @@ public class DuckDBManager {
 
     /**
      * Convenience factory for an in-memory DuckDB manager.
-     * Using the plain JDBC URL `jdbc:duckdb:` creates a temporary in-memory
-     * instance per connection; use a file path or named memory URL if you need
-     * shared in-memory instances across connections.
+     * DuckDB's plain `jdbc:duckdb:` URL creates a separate temporary database per
+     * connection. For pooled/shared access we use a private temp database file so
+     * statements executed on different JDBC connections still see the same state.
      */
     public static DuckDBManager createInMemoryManager() {
-        return new DuckDBManager("jdbc:duckdb:");
+        try {
+            Path tempDb = Files.createTempFile("nyxdb-duckdb-", ".duckdb");
+            Files.deleteIfExists(tempDb);
+            tempDb.toFile().deleteOnExit();
+            logger.info("Created temporary DuckDB database at {}", tempDb.toAbsolutePath());
+            return new DuckDBManager("jdbc:duckdb:" + tempDb.toAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create temporary DuckDB database", e);
+        }
     }
 
     /**
@@ -73,10 +84,20 @@ public class DuckDBManager {
             }
         }
         if (c == null) {
-            logger.debug("Opening new DuckDB connection to {}", jdbcUrl);
+            // Explicitly load DuckDB driver to ensure it's used instead of other JDBC
+            // drivers
+            try {
+                Class.forName("org.duckdb.DuckDBDriver");
+            } catch (ClassNotFoundException e) {
+                logger.warn("DuckDB driver not found in classpath: {}", e.getMessage());
+            }
+            logger.info("Opening new DuckDB connection to {}", jdbcUrl);
             c = DriverManager.getConnection(jdbcUrl, props);
+            c.setAutoCommit(true);
             // Track it in the connection map
             connectionMap.put(c, Boolean.TRUE);
+            logger.info("✓ DuckDB connection created: {} (pool size: {}/{}, total: {})",
+                    c, pool.size(), maxPoolSize, connectionMap.size());
         }
         return c;
     }
@@ -86,13 +107,21 @@ public class DuckDBManager {
      * connection will be closed.
      */
     public void releaseConnection(Connection c) {
-        if (c == null) return;
+        if (c == null)
+            return;
         try {
             if (shutdown.get()) {
+                if (!c.getAutoCommit()) {
+                    c.commit();
+                }
                 c.close();
                 return;
             }
-            if (c.isClosed()) return;
+            if (c.isClosed())
+                return;
+            if (!c.getAutoCommit()) {
+                c.commit();
+            }
             // Offer back to pool if below maxPoolSize, otherwise close
             if (pool.size() < maxPoolSize) {
                 pool.offer(c);
@@ -112,7 +141,8 @@ public class DuckDBManager {
      * Close all pooled connections and mark manager as shutdown.
      */
     public void shutdown() {
-        if (!shutdown.compareAndSet(false, true)) return;
+        if (!shutdown.compareAndSet(false, true))
+            return;
         logger.info("Shutting down DuckDBManager, closing {} pooled connections", pool.size());
         Connection c;
         while ((c = pool.poll()) != null) {
@@ -125,21 +155,36 @@ public class DuckDBManager {
         // Close any remaining tracked connections
         for (Connection conn : connectionMap.keySet()) {
             try {
-                if (conn != null && !conn.isClosed()) conn.close();
+                if (conn != null && !conn.isClosed())
+                    conn.close();
             } catch (SQLException e) {
                 logger.warn("Error closing tracked connection during shutdown: {}", e.getMessage());
             }
         }
-        connectionMap.clear();
+    }
+
+    /**
+     * Execute SQL statement and get the number of affected rows.
+     * Useful for DDL and DML statements.
+     */
+    public int executeSql(String sql) throws SQLException {
+        Connection c = getConnection();
+        try (java.sql.Statement st = c.createStatement()) {
+            return st.executeUpdate(sql);
+        } finally {
+            releaseConnection(c);
+        }
     }
 
     /**
      * Explicitly close a connection and remove it from the map/pool.
      */
     public void closeConnection(Connection c) {
-        if (c == null) return;
+        if (c == null)
+            return;
         try {
-            if (!c.isClosed()) c.close();
+            if (!c.isClosed())
+                c.close();
         } catch (SQLException e) {
             logger.warn("Error closing connection: {}", e.getMessage());
         } finally {

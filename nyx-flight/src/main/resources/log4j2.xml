@@ -19,7 +19,7 @@
 
     <Loggers>
         <!-- Root Logger -->
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="AsyncFile"/>
         </Root>
@@ -31,6 +31,11 @@
         </Logger>
 
         <Logger name="org.nyxdb.parser.core.parallel" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Logger>
+
+        <Logger name="org.nyxdb.flight.NyxFlightService" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="AsyncFile"/>
         </Logger>

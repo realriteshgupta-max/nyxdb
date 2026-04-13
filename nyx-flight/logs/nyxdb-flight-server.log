@@ -1,0 +1,80 @@
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by org.apache.arrow.memory.util.MemoryUtil (file:/Users/ritesh/github/nyxdb/nyx-flight/target/nyx-flight-1.0-SNAPSHOT-fat.jar)
+WARNING: Please consider reporting this to the maintainers of class org.apache.arrow.memory.util.MemoryUtil
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+2026-04-13 16:27:09.682 [main] DEBUG io.netty.util.internal.logging.InternalLoggerFactory - Using Log4J2 as the default logging framework
+2026-04-13 16:27:09.685 [main] DEBUG io.netty.util.internal.PlatformDependent0 - Java version: 25
+2026-04-13 16:27:09.685 [main] DEBUG io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+2026-04-13 16:27:09.686 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+2026-04-13 16:27:09.687 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe base methods: all available
+2026-04-13 16:27:09.687 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.storeFence: available
+2026-04-13 16:27:09.687 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+2026-04-13 16:27:09.688 [main] DEBUG io.netty.util.internal.PlatformDependent0 - direct buffer constructor: unavailable: Reflective setAccessible(true) disabled
+2026-04-13 16:27:09.688 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: available, true
+2026-04-13 16:27:09.688 [main] DEBUG io.netty.util.internal.PlatformDependent0 - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable: class io.netty.util.internal.PlatformDependent0$7 cannot access class jdk.internal.misc.Unsafe (in module java.base) because module java.base does not export jdk.internal.misc to unnamed module @64485a47
+2026-04-13 16:27:09.689 [main] DEBUG io.netty.util.internal.PlatformDependent0 - java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+2026-04-13 16:27:09.689 [main] DEBUG io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+2026-04-13 16:27:09.689 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: /var/folders/rc/8hzt6nj90_74tjx7dlx8mv7h0000gn/T (java.io.tmpdir)
+2026-04-13 16:27:09.689 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+2026-04-13 16:27:09.690 [main] DEBUG io.netty.util.internal.PlatformDependent - Platform: MacOS
+2026-04-13 16:27:09.690 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.maxDirectMemory: -1 bytes
+2026-04-13 16:27:09.690 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+2026-04-13 16:27:09.692 [main] DEBUG io.netty.util.internal.CleanerJava9 - java.nio.ByteBuffer.cleaner(): available
+2026-04-13 16:27:09.692 [main] DEBUG io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+2026-04-13 16:27:09.730 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+2026-04-13 16:27:09.730 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+2026-04-13 16:27:09.734 [main] DEBUG io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkAccessible: true
+2026-04-13 16:27:09.734 [main] DEBUG io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.checkBounds: true
+2026-04-13 16:27:09.734 [main] DEBUG io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@4fd4cae3
+2026-04-13 16:27:09.742 [main] DEBUG io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 20
+2026-04-13 16:27:09.744 [main] DEBUG io.netty.util.concurrent.GlobalEventExecutor - -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+2026-04-13 16:27:09.746 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+2026-04-13 16:27:09.746 [main] DEBUG io.netty.util.internal.InternalThreadLocalMap - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+2026-04-13 16:27:09.750 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+2026-04-13 16:27:09.750 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+2026-04-13 16:27:09.752 [main] DEBUG io.netty.util.internal.PlatformDependent - org.jctools-core.MpscChunkedArrayQueue: available
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 20
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 20
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 9
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 4194304
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+2026-04-13 16:27:09.759 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+2026-04-13 16:27:09.760 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+2026-04-13 16:27:09.760 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.useCacheForAllThreads: false
+2026-04-13 16:27:09.760 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+2026-04-13 16:27:09.760 [main] DEBUG io.netty.buffer.PooledByteBufAllocator - -Dio.netty.allocator.disableCacheFinalizersForFastThreadLocalThreads: false
+2026-04-13 16:27:09.773 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.channel.DefaultChannelId - -Dio.netty.processId: 6570 (auto-detected)
+2026-04-13 16:27:09.774 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.util.NetUtil - -Djava.net.preferIPv4Stack: false
+2026-04-13 16:27:09.774 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.util.NetUtil - -Djava.net.preferIPv6Addresses: false
+2026-04-13 16:27:09.777 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.util.NetUtilInitializations - Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1%lo0)
+2026-04-13 16:27:09.778 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.util.NetUtil - Failed to get SOMAXCONN from sysctl and file /proc/sys/net/core/somaxconn. Default: 128
+2026-04-13 16:27:09.779 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.channel.DefaultChannelId - -Dio.netty.machineId: 42:c5:69:ff:fe:1d:bb:cc (auto-detected)
+2026-04-13 16:27:09.787 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: pooled
+2026-04-13 16:27:09.788 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 0
+2026-04-13 16:27:09.788 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+2026-04-13 16:27:09.789 [grpc-nio-boss-ELG-1-1] DEBUG io.netty.bootstrap.ChannelInitializerExtensions - -Dio.netty.bootstrap.extensions: null
+2026-04-13 16:27:09.795 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Nyx Flight server started at grpc+tcp://127.0.0.1:8815
+2026-04-13 16:27:37.427 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] OUTBOUND SETTINGS: ack=false settings={=2147483647, =1048576, =8192}
+2026-04-13 16:27:37.427 [grpc-nio-worker-ELG-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacityPerThread: 4096
+2026-04-13 16:27:37.427 [grpc-nio-worker-ELG-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.ratio: 8
+2026-04-13 16:27:37.427 [grpc-nio-worker-ELG-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.chunkSize: 32
+2026-04-13 16:27:37.428 [grpc-nio-worker-ELG-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.blocking: false
+2026-04-13 16:27:37.428 [grpc-nio-worker-ELG-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.batchFastThreadLocalOnly: true
+2026-04-13 16:27:37.429 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] OUTBOUND WINDOW_UPDATE: streamId=0 windowSizeIncrement=983041
+2026-04-13 16:27:37.432 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND SETTINGS: ack=false settings={=0, =0, =1048576, =2147483647}
+2026-04-13 16:27:37.432 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] OUTBOUND SETTINGS: ack=true
+2026-04-13 16:27:37.433 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND WINDOW_UPDATE: streamId=0 windowSizeIncrement=983041
+2026-04-13 16:27:37.436 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND SETTINGS: ack=true
+2026-04-13 16:27:37.446 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND HEADERS: streamId=3 headers=GrpcHttp2RequestHeaders[:path: /arrow.flight.protocol.FlightService/DoAction, :authority: localhost:8815, :method: POST, :scheme: http, te: trailers, content-type: application/grpc, user-agent: grpc-java-netty/1.63.0, grpc-accept-encoding: gzip] streamDependency=0 weight=16 exclusive=false padding=0 endStream=false
+2026-04-13 16:27:37.454 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND DATA: streamId=3 padding=0 endStream=true length=180 bytes=00000000af0a17437265617465507265706172656453746174656d656e741293010a52747970652e676f6f676c65617069732e636f6d2f6172726f772e666c69...
+2026-04-13 16:27:37.454 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] OUTBOUND PING: ack=false bytes=1234
+2026-04-13 16:27:37.455 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND PING: ack=true bytes=1234
+2026-04-13 16:27:37.462 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] OUTBOUND HEADERS: streamId=3 headers=GrpcHttp2OutboundHeaders[:status: 200, content-type: application/grpc, grpc-status: 13, grpc-message: There was an error servicing your request.] padding=0 endStream=true
+2026-04-13 16:27:37.467 [grpc-nio-worker-ELG-3-1] DEBUG io.grpc.netty.NettyServerHandler - [id: 0xd29d8e12, L:/127.0.0.1:8815 - R:/127.0.0.1:55171] INBOUND GO_AWAY: lastStreamId=0 errorCode=0 length=0 bytes=

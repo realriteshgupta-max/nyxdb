@@ -1,6 +1,5 @@
 package org.nyxdb.flight;
 
-import org.nyxdb.duckdb.DuckDBManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.arrow.flight.FlightServer;
@@ -26,18 +25,21 @@ public class NyxFlightServerStarter {
         FlightServer server = null;
         try {
 
-            // Example: create a table, insert data, then select
-            String create = "CREATE TABLE IF NOT EXISTS users (id INTEGER, name VARCHAR);";
-            String insert1 = "INSERT INTO users VALUES (1, 'alice');";
-            String insert2 = "INSERT INTO users VALUES (2, 'bob');";
-            String select = "SELECT * FROM users ORDER BY id;";
-            service.executeSqlBatch(create + " " + insert1 + " " + insert2 + " " + select + " ");
+            /*
+             * // Example: create a table, insert data, then select
+             * String create =
+             * "CREATE TABLE IF NOT EXISTS users (id INTEGER, name VARCHAR);";
+             * String insert1 = "INSERT INTO users VALUES (1, 'alice');";
+             * String insert2 = "INSERT INTO users VALUES (2, 'bob');";
+             * String select = "SELECT * FROM users ORDER BY id;";
+             * service.executeSqlBatch(create + " " + insert1 + " " + insert2 + " " + select
+             * + " ");
+             */
 
-            Location location = Location.forGrpcInsecure("127.0.0.1", 8815);
+            Location location = Location.forGrpcInsecure("0.0.0.0", 8815);
             server = FlightServer.builder(service.getAllocator(), location, service).build();
             server.start();
             logger.info("Nyx Flight server started at {}", location.getUri());
-
             server.awaitTermination();
         } catch (Throwable t) {
             logger.error("Could not start Flight server (allocator init failed): {}", t);

@@ -1,0 +1,195 @@
+2026-04-13 11:20:51.725 [main] WARN  org.nyxdb.flight.NyxFlightServerMain - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:20:51.727 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:20:52.825 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:52.848 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:20:52.849 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:20:52.852 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:20:52.852 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:20:52.853 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:20:52.853 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:20:52.854 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:20:52.854 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:20:52.855 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:20:52.856 [main] INFO  org.nyxdb.flight.NyxFlightServerMain - Demo finished
+2026-04-13 11:21:34.791 [main] WARN  org.nyxdb.flight.NyxFlightServerMain - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:21:34.793 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:21:35.918 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:21:35.941 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:21:35.942 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:21:35.944 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:21:35.944 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:21:35.945 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:21:35.945 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:21:35.946 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:21:35.946 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:21:35.947 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:21:35.948 [main] INFO  org.nyxdb.flight.NyxFlightServerMain - Demo finished
+2026-04-13 11:23:03.080 [main] WARN  org.nyxdb.flight.NyxFlightServerMain - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:23:03.082 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:23:04.204 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:04.226 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:23:04.226 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:23:04.228 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:23:04.228 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:23:04.230 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:04.230 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:23:04.230 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:04.230 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:23:04.231 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:23:04.233 [main] INFO  org.nyxdb.flight.NyxFlightServerMain - Demo finished
+2026-04-13 11:23:13.066 [main] WARN  org.nyxdb.flight.NyxFlightServerMain - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:23:13.067 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:23:14.164 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:14.186 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:23:14.187 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:23:14.189 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:23:14.189 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:23:14.190 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:14.190 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:23:14.190 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:14.190 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:23:14.191 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:23:14.192 [main] INFO  org.nyxdb.flight.NyxFlightServerMain - Demo finished
+2026-04-13 11:23:22.000 [main] WARN  org.nyxdb.flight.NyxFlightServerMain - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:23:22.001 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:23:23.460 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:23.483 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:23:23.484 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:23:23.486 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:23:23.486 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:23:23.488 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:23.488 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:23:23.489 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:23.489 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:23:23.490 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:23:23.491 [main] INFO  org.nyxdb.flight.NyxFlightServerMain - Demo finished
+2026-04-13 11:26:19.419 [main] WARN  org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:26:19.420 [main] INFO  org.nyxdb.flight.NyxFlightService - Parsing and executing SQL batch
+2026-04-13 11:26:20.539 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:26:20.559 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:26:20.560 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:26:20.563 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:26:20.563 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:26:20.564 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:26:20.564 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:26:20.564 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:26:20.564 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:26:20.565 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 1 pooled connections
+2026-04-13 11:26:20.566 [main] INFO  org.nyxdb.flight.NyxFlightServerStarter - Demo finished
+2026-04-13 11:27:24.230 [main] WARN  org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:27:59.442 [main] WARN  org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): java.lang.ExceptionInInitializerError
+2026-04-13 11:28:26.261 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 11:29:52.696 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 11:30:38.453 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 11:32:31.293 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 11:32:45.246 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more

@@ -8,3 +8,156 @@
 2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
 2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
 2026-04-13 11:14:16.909 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:15:09.710 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:09.732 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:15:09.732 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:15:09.735 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:15:09.735 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:15:09.736 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:15:09.736 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:15:09.737 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:15:09.737 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:15:09.739 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:19:47.362 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:47.384 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:19:47.385 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:19:47.387 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:19:47.387 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:19:47.389 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:19:47.389 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:19:47.389 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:19:47.389 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:19:47.392 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:20:45.654 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:45.674 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:20:45.675 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:20:45.677 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:20:45.677 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:20:45.678 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:20:45.678 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:20:45.678 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:20:45.678 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:20:45.681 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:23:22.649 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:22.668 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:23:22.668 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:23:22.670 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:23:22.670 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:23:22.671 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:22.671 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:23:22.672 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:23:22.672 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:23:22.675 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:24:32.292 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:32.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:24:32.312 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:24:32.314 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:24:32.314 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:24:32.315 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:24:32.315 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:24:32.316 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:24:32.316 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:24:32.318 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:25:14.838 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:14.858 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:25:14.859 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:25:14.861 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:25:14.861 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:25:14.862 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:25:14.862 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:25:14.862 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:25:14.862 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:25:14.866 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:29:47.267 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:47.290 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:29:47.291 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:29:47.293 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:29:47.293 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:29:47.294 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:29:47.295 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:29:47.295 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:29:47.295 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:29:47.298 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:32:15.643 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:15.664 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:32:15.664 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:32:15.666 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:32:15.666 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:32:15.668 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:32:15.668 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:32:15.668 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:32:15.668 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:32:15.671 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:33:14.208 [org.nyxdb.flight.NyxFlightServerStarter.main()] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+	at jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.executeMainMethod(AbstractExecJavaBase.java:402) [exec-maven-plugin-3.6.3.jar:3.6.3]
+	at org.codehaus.mojo.exec.ExecJavaMojo.executeMainMethod(ExecJavaMojo.java:142) [exec-maven-plugin-3.6.3.jar:3.6.3]
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.doExecClassLoader(AbstractExecJavaBase.java:377) [exec-maven-plugin-3.6.3.jar:3.6.3]
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.lambda$execute$0(AbstractExecJavaBase.java:287) [exec-maven-plugin-3.6.3.jar:3.6.3]
+	at java.lang.Thread.run(Thread.java:1474) [?:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 21 more
+2026-04-13 11:33:21.219 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:21.238 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:33:21.238 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:33:21.241 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:33:21.241 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:33:21.242 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:33:21.242 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:33:21.243 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:33:21.243 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:33:21.245 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections
+2026-04-13 11:35:03.888 [main] ERROR org.nyxdb.flight.NyxFlightServerStarter - Could not start Flight server (allocator init failed): {}
+java.lang.ExceptionInInitializerError: null
+	at org.apache.arrow.memory.netty.DefaultAllocationManagerFactory.<clinit>(DefaultAllocationManagerFactory.java:26) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at java.lang.Class.forName(Class.java:458) ~[?:?]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getFactory(DefaultAllocationManagerOption.java:105) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.DefaultAllocationManagerOption.getDefaultAllocationManagerFactory(DefaultAllocationManagerOption.java:92) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator$Config.getAllocationManagerFactory(BaseAllocator.java:826) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.access$001(ImmutableConfig.java:20) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$InitShim.getAllocationManagerFactory(ImmutableConfig.java:80) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig.<init>(ImmutableConfig.java:43) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.ImmutableConfig$Builder.build(ImmutableConfig.java:492) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.BaseAllocator.<clinit>(BaseAllocator.java:72) ~[arrow-memory-core-19.0.0.jar:19.0.0]
+	at org.nyxdb.flight.NyxFlightService.getAllocator(NyxFlightService.java:170) ~[classes/:?]
+	at org.nyxdb.flight.NyxFlightServerStarter.main(NyxFlightServerStarter.java:30) [classes/:?]
+Caused by: java.lang.UnsupportedOperationException
+	at io.netty.buffer.EmptyByteBuf.memoryAddress(EmptyByteBuf.java:961) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.DuplicatedByteBuf.memoryAddress(DuplicatedByteBuf.java:115) ~[netty-buffer-4.2.9.Final.jar:19.0.0]
+	at io.netty.buffer.UnsafeDirectLittleEndian.<init>(UnsafeDirectLittleEndian.java:45) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at io.netty.buffer.PooledByteBufAllocatorL.<init>(PooledByteBufAllocatorL.java:47) ~[arrow-memory-netty-buffer-patch-19.0.0.jar:19.0.0]
+	at org.apache.arrow.memory.netty.NettyAllocationManager.<clinit>(NettyAllocationManager.java:54) ~[arrow-memory-netty-19.0.0.jar:19.0.0]
+	... 14 more
+2026-04-13 11:35:59.546 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:59.569 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:35:59.569 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:35:59.572 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:35:59.572 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:35:59.573 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:35:59.573 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:35:59.573 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:35:59.573 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:35:59.576 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections

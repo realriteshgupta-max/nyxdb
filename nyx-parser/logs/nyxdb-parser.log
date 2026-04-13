@@ -129,3 +129,1444 @@ Involved Tables: [(, users]
 2026-04-13 11:14:14.173 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
 2026-04-13 11:14:14.173 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
 2026-04-13 11:14:14.173 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:15:07.971 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:15:07.972 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:15:07.973 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:15:07.973 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:15:07.973 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.975 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:15:07.975 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:15:07.977 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.977 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:15:07.977 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:15:07.977 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:15:07.978 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:15:07.981 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.981 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:15:07.981 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:15:07.982 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:15:07.982 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.983 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:15:07.983 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:15:07.983 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:15:07.983 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:15:07.983 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:15:07.985 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:15:07.985 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:15:07.985 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.986 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:15:07.986 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:15:07.986 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:15:07.986 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:15:07.988 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:15:07.991 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:15:07.991 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:15:07.992 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:15:07.992 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:15:07.996 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:15:07.996 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:15:07.996 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:15:07.996 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:15:07.997 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:15:07.997 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:15:07.997 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:15:07.997 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:15:07.997 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:19:44.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:19:44.853 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:19:44.854 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:19:44.854 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:19:44.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.857 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:19:44.857 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:19:44.859 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:19:44.860 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:19:44.862 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.863 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:19:44.863 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:19:44.863 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:19:44.864 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:19:44.866 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:19:44.866 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:19:44.866 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.867 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:19:44.867 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:19:44.867 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:19:44.868 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:19:44.870 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:19:44.872 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:19:44.873 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:19:44.874 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:19:44.874 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:19:44.877 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:19:44.877 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:19:44.878 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:20:43.812 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:20:43.813 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:20:43.814 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:20:43.814 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:20:43.815 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.817 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:20:43.817 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:20:43.819 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.819 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:20:43.819 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:20:43.820 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:20:43.822 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.822 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:20:43.823 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:20:43.823 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:20:43.823 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.824 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:20:43.824 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:20:43.824 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:20:43.824 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:20:43.824 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:20:43.826 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:20:43.826 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:20:43.826 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.827 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:20:43.827 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:20:43.827 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:20:43.827 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:20:43.829 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:20:43.832 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:20:43.832 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:20:43.833 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:20:43.833 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:20:43.837 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:20:43.838 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:20:43.838 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:22:52.303 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:22:52.304 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:22:52.305 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:22:52.305 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:22:52.306 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.307 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:22:52.308 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:22:52.309 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:22:52.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:22:52.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:22:52.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:22:52.310 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:22:52.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:22:52.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:22:52.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:22:52.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:22:52.311 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:22:52.314 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.314 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:22:52.314 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:22:52.314 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:22:52.315 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.315 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:22:52.315 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:22:52.316 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:22:52.316 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:22:52.316 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:22:52.317 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:22:52.318 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:22:52.318 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.318 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:22:52.318 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:22:52.319 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:22:52.319 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:22:52.321 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:22:52.324 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:22:52.324 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:22:52.326 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:22:52.326 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:22:52.331 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:22:52.332 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:23:20.840 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:23:20.842 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:23:20.843 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:23:20.843 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:23:20.844 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.846 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:23:20.846 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:23:20.849 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.850 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:23:20.850 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:23:20.850 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:23:20.850 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:23:20.850 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:23:20.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:23:20.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:23:20.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:23:20.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:23:20.851 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:23:20.853 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.853 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:23:20.854 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:23:20.854 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:23:20.854 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:23:20.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:23:20.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:23:20.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:23:20.855 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:23:20.857 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:23:20.857 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:23:20.858 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.858 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:23:20.858 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:23:20.858 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:23:20.859 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:23:20.862 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:23:20.865 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:23:20.865 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:23:20.866 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:23:20.866 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:23:20.871 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:23:20.871 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:23:20.871 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:23:20.871 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:23:20.872 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:23:20.872 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:23:20.872 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:23:20.872 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:23:20.872 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:24:30.116 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:24:30.117 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:24:30.118 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:24:30.118 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:24:30.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.121 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:24:30.121 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:24:30.123 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:24:30.124 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:24:30.126 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.127 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:24:30.127 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:24:30.128 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:24:30.128 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.129 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:24:30.129 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:24:30.129 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:24:30.129 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:24:30.129 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:24:30.131 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:24:30.131 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:24:30.131 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.132 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:24:30.132 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:24:30.132 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:24:30.133 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:24:30.135 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:24:30.137 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:24:30.138 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:24:30.139 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:24:30.139 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:24:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:24:30.143 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:24:30.144 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:25:12.733 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:25:12.734 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:25:12.735 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:25:12.735 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:25:12.735 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.737 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:25:12.738 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:25:12.739 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:25:12.740 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:25:12.741 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:25:12.742 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.743 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:25:12.743 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:25:12.743 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:25:12.744 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:25:12.746 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:25:12.746 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:25:12.747 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.748 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:25:12.748 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:25:12.748 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:25:12.749 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:25:12.750 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:25:12.752 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:25:12.752 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:25:12.753 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:25:12.754 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:25:12.757 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:25:12.758 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:25:12.758 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:29:45.092 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:29:45.094 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:29:45.095 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:29:45.095 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:29:45.096 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.097 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:29:45.098 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:29:45.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:29:45.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:29:45.100 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:29:45.101 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:29:45.103 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.103 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:29:45.104 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:29:45.104 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:29:45.104 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.105 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:29:45.105 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:29:45.105 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:29:45.105 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:29:45.105 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:29:45.106 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:29:45.106 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:29:45.107 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.107 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:29:45.107 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:29:45.108 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:29:45.108 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:29:45.110 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:29:45.113 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:29:45.114 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:29:45.115 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:29:45.115 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:29:45.118 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:29:45.119 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:32:13.448 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:32:13.450 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:32:13.450 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:32:13.451 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:32:13.451 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.453 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:32:13.453 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:32:13.455 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:32:13.456 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:32:13.458 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.458 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:32:13.458 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:32:13.459 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:32:13.459 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.459 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:32:13.460 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:32:13.460 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:32:13.460 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:32:13.460 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:32:13.461 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:32:13.461 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:32:13.462 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.462 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:32:13.462 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:32:13.462 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:32:13.463 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:32:13.465 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:32:13.468 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:32:13.468 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:32:13.469 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:32:13.469 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:32:13.472 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:32:13.473 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:33:19.410 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:33:19.411 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:33:19.412 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:33:19.412 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:33:19.412 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.415 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:33:19.415 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:33:19.417 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:33:19.418 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:33:19.419 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:33:19.419 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:33:19.420 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.421 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:33:19.421 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:33:19.421 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:33:19.422 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.422 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:33:19.422 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:33:19.422 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:33:19.423 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:33:19.423 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:33:19.424 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:33:19.424 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:33:19.425 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.425 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:33:19.425 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:33:19.425 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:33:19.426 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:33:19.427 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:33:19.429 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:33:19.430 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:33:19.432 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:33:19.432 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:33:19.436 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:33:19.436 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:33:19.436 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:33:19.436 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:33:19.436 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:33:19.437 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:33:19.437 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:33:19.437 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:33:19.437 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}
+2026-04-13 11:35:57.006 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 4 queries
+2026-04-13 11:35:57.008 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:35:57.008 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:35:57.008 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:35:57.009 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.011 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:35:57.011 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Generated DOT:
+digraph ParallelGroups {
+  rankdir=LR;
+  "Q0_sub1_sub2" [label="Q0_sub1_sub2
+SELECT AVG(amount) FROM orders"];
+  "Q0_sub1" [label="Q0_sub1
+SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )"];
+  "Q0" [label="Q0
+SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))"];
+  "Q0_sub1_sub2" -> "Q0_sub1" [label="RAW"];
+  "Q0_sub1_sub2" -> "Q0" [label="RAW"];
+  "Q0_sub1" -> "Q0" [label="RAW"];
+  subgraph cluster_group_0 {
+    label="group_0";
+    "Q0_sub1_sub2";
+  }
+  subgraph cluster_group_1 {
+    label="group_1";
+    "Q0_sub1";
+  }
+  subgraph cluster_group_2 {
+    label="group_2";
+    "Q0";
+  }
+}
+
+2026-04-13 11:35:57.013 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Execution Order for Nested Query with GROUP BY (including subqueries):
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 0:
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0_sub1
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Stage 1:
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Query ID: Q0
+2026-04-13 11:35:57.014 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+2026-04-13 11:35:57.016 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.017 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:35:57.017 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:35:57.017 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:35:57.018 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.018 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:35:57.018 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parallel groups (each set can run in parallel):
+2026-04-13 11:35:57.019 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 0: Q0_sub1_sub2
+2026-04-13 11:35:57.019 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 1: Q0_sub1
+2026-04-13 11:35:57.019 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Group 2: Q0
+2026-04-13 11:35:57.020 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 3 queries
+2026-04-13 11:35:57.020 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:35:57.021 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.021 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 2 queries from batch
+2026-04-13 11:35:57.021 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 2 queries
+2026-04-13 11:35:57.021 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 2 stages
+2026-04-13 11:35:57.022 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - --- Physical Execution Plan Report ---
+=====================================
+PARALLEL QUERY EXECUTION PLAN REPORT
+=====================================
+
+Physical Query Execution Plan
+==============================
+Total Queries: 2
+Execution Stages: 2
+Max Parallelism: 1 queries
+Parallelization Factor: 1.00
+Estimated Total Time: 200ms
+
+Execution Plan:
+  Stage 0: 1 queries [Q0_sub1] -> Nodes: {Q0_sub1=nodeA}
+  Stage 1: 1 queries [Q0] -> Nodes: {Q0=nodeC}
+
+Execution Timeline:
+
+  ┌─ Stage 0
+  │  ├─ Q0_sub1 (SELECT)
+  │  │  ├─ Reads: [orders]
+  │
+
+  ┌─ Stage 1
+  │  ├─ Q0 (SELECT)
+  │  │  ├─ Reads: [(, users]
+  │
+  └─ End
+
+Performance Metrics:
+  • Total Queries: 2
+  • Number of Stages: 2
+  • Max Parallelism: 1 queries/stage
+  • Parallelization Factor: 1.00x
+  • Critical Path Length: 2 stages
+
+2026-04-13 11:35:57.023 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Building logical plan for query: Q0
+2026-04-13 11:35:57.025 [main] INFO  org.nyxdb.parser.core.parallel.SelectQueryOptimizer - Logical plan built: LogicalQueryPlan{queryId='Q0', operators=4, tables=[(, users], totalCost=4000}
+2026-04-13 11:35:57.026 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - 
+--- Logical Operator Tree (Physical Structure) ---
+
+Logical Query Plan: Q0
+==========================================
+SQL: SELECT u.name, sub.total_spent FROM users u INNER JOIN (  SELECT user_id, SUM(amount) as total_spent   FROM orders   GROUP BY user_id) sub ON u.id = sub.user_id ORDER BY sub.total_spent DESC
+Operators:
+PROJECT[id=project_final, rows=1000, cost=1000]
+   ├─ Description: Project(columns=[sub.total_spent, u.name])
+   └─ Estimated Cost: 1000
+│   ├─ SORT[id=sort_1, rows=1000, cost=1000]
+│      ├─ Description: Sort(sub.total_spent DESC)
+│      └─ Estimated Cost: 1000
+│   │   ├─ AGGREGATE[id=agg_1, rows=1000, cost=1000]
+│   │      ├─ Description: Aggregate(GROUP BY [user_id) sub ON u.id = sub.user_id], functions=[SUM(*) AS SUM_*])
+│   │      └─ Estimated Cost: 1000
+│   │   │   ├─ SCAN[id=scan_(, rows=1000, cost=1000]
+│   │   │      ├─ Description: Scan(()
+│   │   │      └─ Estimated Cost: 1000
+Total Operators: 4
+Involved Tables: [(, users]
+
+2026-04-13 11:35:57.027 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan for 2 queries
+2026-04-13 11:35:57.027 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 1 stages
+2026-04-13 11:35:57.030 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 3 queries from batch
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Creating physical query plan (using parser order) for 3 queries
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryPlanner - Created execution plan with 3 stages
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Parsed queries (id -> sql):
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1_sub2 -> SELECT AVG(amount) FROM orders
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0_sub1 -> SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  )
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest -   Q0 -> SELECT * FROM users u WHERE u.id IN (  SELECT user_id FROM orders o WHERE o.amount > (    SELECT AVG(amount) FROM orders  ))
+2026-04-13 11:35:57.031 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryExecutionTest - Subquery map: {Q0_sub1=[Q0_sub1_sub2], Q0=[Q0_sub1]}

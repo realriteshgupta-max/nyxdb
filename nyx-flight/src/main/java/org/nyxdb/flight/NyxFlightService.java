@@ -162,7 +162,7 @@ public class NyxFlightService extends NoOpFlightSqlProducer {
         return new FlightEndpoint(t, loc);
     }
 
-    private BufferAllocator getAllocator() {
+    public BufferAllocator getAllocator() {
         BufferAllocator a = allocator;
         if (a == null) {
             synchronized (this) {

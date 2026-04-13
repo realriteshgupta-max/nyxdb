@@ -1,0 +1,6 @@
+2026-04-13 15:00:01.887 [main] INFO  org.nyxdb.flight.FlightJdbcIntegrationTest - Setting up: Starting Flight server on localhost:8815
+2026-04-13 15:00:16.969 [main] WARN  org.nyxdb.flight.FlightJdbcIntegrationTest - ⚠ Skipping test: Server startup timeout (15079ms)
+2026-04-13 15:00:16.974 [main] INFO  org.nyxdb.flight.FlightJdbcIntegrationTest - Teardown: Stopping Flight server
+2026-04-13 15:00:56.026 [main] INFO  org.nyxdb.flight.FlightJdbcIntegrationTest - Setting up: Starting Flight server on localhost:8815
+2026-04-13 15:01:11.119 [main] WARN  org.nyxdb.flight.FlightJdbcIntegrationTest - ⚠ Skipping test: Server startup timeout (15090ms)
+2026-04-13 15:01:11.122 [main] INFO  org.nyxdb.flight.FlightJdbcIntegrationTest - Teardown: Stopping Flight server

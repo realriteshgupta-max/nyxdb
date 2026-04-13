@@ -1,0 +1,10 @@
+2026-04-13 11:14:16.879 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Parsing query batch
+2026-04-13 11:14:16.901 [main] INFO  org.nyxdb.parser.core.parallel.ParallelQueryParser - Successfully parsed 4 queries from batch
+2026-04-13 11:14:16.902 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q0 -> type CREATE_TABLE
+2026-04-13 11:14:16.904 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected -1 rows
+2026-04-13 11:14:16.904 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q1 -> type INSERT
+2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q2 -> type INSERT
+2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Statement affected 1 rows
+2026-04-13 11:14:16.906 [main] INFO  org.nyxdb.flight.NyxFlightService - Executing query Q3 -> type SELECT
+2026-04-13 11:14:16.909 [main] INFO  org.nyxdb.duckdb.DuckDBManager - Shutting down DuckDBManager, closing 0 pooled connections

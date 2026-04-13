@@ -24,30 +24,269 @@ public class ParallelQueryParser {
      * @param sqlBatch a batch of SQL statements (separated by semicolons)
      * @return a list of Query objects with dependency metadata
      */
+
+    // Map from parent query ID to list of child (subquery) IDs
+    private final java.util.Map<String, java.util.List<String>> subqueryMap = new java.util.HashMap<>();
+    // Map from query ID to Query object for quick lookup
+    private final java.util.Map<String, Query> idQueryMap = new java.util.HashMap<>();
+    // Map normalized subquery SQL -> generated subId to avoid duplicate extraction
+    private final java.util.Map<String, String> subSqlToId = new java.util.HashMap<>();
+
     public List<Query> parseQueryBatch(String sqlBatch) {
         logger.info("Parsing query batch");
         List<Query> queries = new ArrayList<>();
-
-        // Split by semicolon
+        subqueryMap.clear();
+        idQueryMap.clear();
+        subSqlToId.clear();
         String[] statements = sqlBatch.split(";");
         logger.debug("Found {} potential statements in batch", statements.length);
-        int queryId = 0;
-
+        int[] queryId = { 0 };
         for (String statement : statements) {
             String trimmedSql = statement.trim();
-            if (trimmedSql.isEmpty()) {
+            if (trimmedSql.isEmpty())
                 continue;
-            }
+            extractQueriesRecursive(trimmedSql, "Q" + (queryId[0]++), queries, queryId, null);
+        }
+        logger.info("Successfully parsed {} queries from batch", queries.size());
+        return queries;
+    }
 
-            Query query = parseQuery(trimmedSql, "Q" + (queryId++));
-            if (query != null) {
-                logger.debug("Parsed query: {} ({} type)", query.getId(), query.getType());
-                queries.add(query);
+    /**
+     * Recursively extracts queries and subqueries, adding them to the list.
+     */
+    private void extractQueriesRecursive(String sql, String queryId, List<Query> queries, int[] queryIdCounter,
+            String parentId) {
+        // Look for subqueries anywhere in the SQL (FROM, WHERE, IN, etc.)
+        List<String> subqueries = extractSubqueriesAnywhere(sql);
+        List<String> subIds = new ArrayList<>();
+        String rewrittenSql = sql;
+        int subIdx = 0;
+        for (String sub : subqueries) {
+            String normSub = sub.replaceAll("\\s+", " ").trim();
+            String subId;
+            if (subSqlToId.containsKey(normSub)) {
+                // already extracted this identical subquery elsewhere; reuse id
+                subId = subSqlToId.get(normSub);
+            } else {
+                subId = queryId + "_sub" + (queryIdCounter[0]++);
+                subSqlToId.put(normSub, subId);
+                // recursively extract new subquery
+                extractQueriesRecursive(sub, subId, queries, queryIdCounter, queryId);
+            }
+            subIds.add(subId);
+            // Replace only the first occurrence of the subquery with the subId (as alias)
+            rewrittenSql = replaceFirstSubquery(rewrittenSql, sub, subId);
+            subIdx++;
+        }
+        Query query = parseQuery(rewrittenSql, queryId);
+        if (query != null) {
+            queries.add(query);
+            // keep id->Query mapping for building execution trees
+            idQueryMap.put(query.getId(), query);
+            if (parentId != null) {
+                subqueryMap.computeIfAbsent(parentId, k -> new java.util.ArrayList<>()).add(queryId);
+            }
+        }
+    }
+
+    // Helper to replace only the first occurrence of a subquery (with parentheses)
+    // with a subId
+    private String replaceFirstSubquery(String sql, String subquery, String subId) {
+        // Normalize whitespace for matching
+        String normSql = sql.replaceAll("\\s+", " ");
+        String normSub = subquery.replaceAll("\\s+", " ");
+        // Find the subquery in parentheses (allowing for whitespace)
+        int idx = indexOfNormalized(normSql, normSub);
+        if (idx == -1)
+            return sql; // Not found
+        // Now find the corresponding position in the original SQL
+        int origIdx = findOriginalIndex(sql, subquery, idx);
+        if (origIdx == -1)
+            return sql;
+        int endIdx = origIdx + subquery.length() + 1; // +1 for '('
+        // Try to find the alias after the subquery
+        int aliasStart = endIdx;
+        while (aliasStart < sql.length() && Character.isWhitespace(sql.charAt(aliasStart)))
+            aliasStart++;
+        int aliasEnd = aliasStart;
+        while (aliasEnd < sql.length()
+                && (Character.isJavaIdentifierPart(sql.charAt(aliasEnd)) || sql.charAt(aliasEnd) == '_'))
+            aliasEnd++;
+        // Replace the subquery (with parentheses and alias) with the subId (as a table
+        // reference)
+        String before = sql.substring(0, origIdx - 1); // -1 to include '('
+        String after = sql.substring(aliasEnd);
+        return before + subId + after;
+    }
+
+    // Find the index of the normalized subquery in the normalized SQL
+    private int indexOfNormalized(String normSql, String normSub) {
+        return normSql.indexOf("(" + normSub);
+    }
+
+    // Find the corresponding index in the original SQL for the normalized match
+    private int findOriginalIndex(String sql, String subquery, int normIdx) {
+        // Try to find the first '(' followed by the subquery (ignoring whitespace)
+        String normalized = subquery.trim().replaceAll("\\s+", " ");
+        String quoted = java.util.regex.Pattern.quote(normalized).replace(" ", "\\\\s+");
+        String pattern = "\\(\\s*" + quoted;
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile(pattern, java.util.regex.Pattern.DOTALL)
+                .matcher(sql);
+        if (matcher.find()) {
+            return matcher.start() + 1; // position after '('
+        }
+        return -1;
+    }
+
+    public java.util.Map<String, java.util.List<String>> getSubqueryMap() {
+        return subqueryMap;
+    }
+
+    /**
+     * Build execution order for queries so that subqueries (children) appear
+     * before their parents. Returns a list of Query objects in execution order.
+     */
+    public List<Query> buildExecutionOrder(List<Query> queries) {
+        java.util.List<Query> ordered = new ArrayList<>();
+        // build id set and child id set
+        java.util.Set<String> allIds = new java.util.HashSet<>();
+        java.util.Set<String> childIds = new java.util.HashSet<>();
+        for (Query q : queries) {
+            allIds.add(q.getId());
+        }
+        for (java.util.List<String> children : subqueryMap.values()) {
+            childIds.addAll(children);
+        }
+
+        // roots are queries that are not children of any other
+        java.util.List<String> roots = new ArrayList<>();
+        for (String id : allIds) {
+            if (!childIds.contains(id))
+                roots.add(id);
+        }
+
+        java.util.Set<String> visited = new java.util.HashSet<>();
+
+        for (String root : roots) {
+            dfsPostOrder(root, visited, ordered);
+        }
+
+        // There may be disconnected components (e.g., cycles or orphaned ids)
+        // ensure all queries are included
+        for (String id : allIds) {
+            if (!visited.contains(id)) {
+                dfsPostOrder(id, visited, ordered);
             }
         }
 
-        logger.info("Successfully parsed {} queries from batch", queries.size());
-        return queries;
+        return ordered;
+    }
+
+    private void dfsPostOrder(String id, java.util.Set<String> visited, java.util.List<Query> out) {
+        if (visited.contains(id))
+            return;
+        visited.add(id);
+        java.util.List<String> children = subqueryMap.get(id);
+        if (children != null) {
+            for (String c : children) {
+                dfsPostOrder(c, visited, out);
+            }
+        }
+        Query q = idQueryMap.get(id);
+        if (q != null)
+            out.add(q);
+    }
+
+    /**
+     * Extracts subqueries from the FROM clause using a simple regex approach.
+     * Only handles one level of nesting and assumes subqueries are wrapped in
+     * parentheses.
+     */
+    private List<String> extractSubqueriesFromFromClause(String sql) {
+        List<String> subqueries = new ArrayList<>();
+        String upperSql = sql.toUpperCase();
+        int fromIdx = upperSql.indexOf("FROM");
+        if (fromIdx < 0)
+            return subqueries;
+        int endIdx = sql.length();
+        int whereIdx = upperSql.indexOf("WHERE", fromIdx);
+        int groupIdx = upperSql.indexOf("GROUP BY", fromIdx);
+        int orderIdx = upperSql.indexOf("ORDER BY", fromIdx);
+        if (whereIdx > 0)
+            endIdx = Math.min(endIdx, whereIdx);
+        if (groupIdx > 0)
+            endIdx = Math.min(endIdx, groupIdx);
+        if (orderIdx > 0)
+            endIdx = Math.min(endIdx, orderIdx);
+        String fromClause = sql.substring(fromIdx + 4, endIdx);
+        // Look for subqueries in parentheses
+        int idx = 0;
+        while (idx < fromClause.length()) {
+            if (fromClause.charAt(idx) == '(') {
+                int depth = 1;
+                int start = idx + 1;
+                int end = start;
+                while (end < fromClause.length() && depth > 0) {
+                    if (fromClause.charAt(end) == '(')
+                        depth++;
+                    else if (fromClause.charAt(end) == ')')
+                        depth--;
+                    end++;
+                }
+                if (depth == 0) {
+                    String sub = fromClause.substring(start, end - 1).trim();
+                    // Only treat as subquery if it starts with SELECT
+                    if (sub.toUpperCase().startsWith("SELECT")) {
+                        subqueries.add(sub);
+                    }
+                    idx = end;
+                } else {
+                    break; // Unbalanced parentheses
+                }
+            } else {
+                idx++;
+            }
+        }
+        return subqueries;
+    }
+
+    /**
+     * Extracts subqueries anywhere in the SQL string by scanning for
+     * parenthesized sections that begin with SELECT. Handles nested
+     * parentheses.
+     */
+    private List<String> extractSubqueriesAnywhere(String sql) {
+        List<String> subqueries = new ArrayList<>();
+        int idx = 0;
+        while (idx < sql.length()) {
+            if (sql.charAt(idx) == '(') {
+                int depth = 1;
+                int start = idx + 1;
+                int end = start;
+                while (end < sql.length() && depth > 0) {
+                    if (sql.charAt(end) == '(')
+                        depth++;
+                    else if (sql.charAt(end) == ')')
+                        depth--;
+                    end++;
+                }
+                if (depth == 0) {
+                    String inner = sql.substring(start, end - 1).trim();
+                    if (inner.toUpperCase().startsWith("SELECT")) {
+                        subqueries.add(inner);
+                    }
+                    // continue scanning inside the parentheses to find nested ones
+                    List<String> nested = extractSubqueriesAnywhere(inner);
+                    subqueries.addAll(nested);
+                    idx = end;
+                    continue;
+                } else {
+                    break; // unbalanced
+                }
+            }
+            idx++;
+        }
+        return subqueries;
     }
 
     /**

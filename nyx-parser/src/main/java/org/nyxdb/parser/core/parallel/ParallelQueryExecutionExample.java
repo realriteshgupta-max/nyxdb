@@ -52,7 +52,7 @@ public class ParallelQueryExecutionExample {
 
         // Create execution plan
         ParallelQueryPlanner planner = new ParallelQueryPlanner();
-        PhysicalQueryPlan plan = planner.createQueryPlan(parsedQueries);
+        PhysicalQueryPlan plan = planner.createQueryPlanUsingParser(parser, parsedQueries);
 
         logger.info(planner.generateDetailedReport(plan));
     }
@@ -152,7 +152,7 @@ public class ParallelQueryExecutionExample {
 
         // Create execution plan
         ParallelQueryPlanner planner = new ParallelQueryPlanner();
-        PhysicalQueryPlan plan = planner.createQueryPlan(parsedQueries);
+        PhysicalQueryPlan plan = planner.createQueryPlanUsingParser(parser, parsedQueries);
 
         logger.info(planner.generateDetailedReport(plan));
     }
@@ -181,7 +181,7 @@ public class ParallelQueryExecutionExample {
 
         // Step 2: Create execution plan
         ParallelQueryPlanner planner = new ParallelQueryPlanner();
-        PhysicalQueryPlan plan = planner.createQueryPlan(queries);
+        PhysicalQueryPlan plan = planner.createQueryPlanUsingParser(parser, queries);
         logger.info(planner.generateDetailedReport(plan));
 
         // Step 3: Create execution listener

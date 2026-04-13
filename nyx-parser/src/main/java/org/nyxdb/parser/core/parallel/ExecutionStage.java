@@ -10,6 +10,8 @@ import java.util.List;
 public class ExecutionStage {
     private final int stageNumber;
     private final List<Query> queries;
+    // Optional mapping of queryId -> assigned worker/node for distributed execution
+    private final java.util.Map<String, String> queryNodeMap;
     private long executionTimeMs;
     private boolean completed;
 
@@ -18,6 +20,7 @@ public class ExecutionStage {
         this.queries = new ArrayList<>();
         this.executionTimeMs = 0;
         this.completed = false;
+        this.queryNodeMap = new java.util.HashMap<>();
     }
 
     public int getStageNumber() {
@@ -34,6 +37,14 @@ public class ExecutionStage {
 
     public void addQueries(List<Query> queriesToAdd) {
         queries.addAll(queriesToAdd);
+    }
+
+    public void assignNodeToQuery(String queryId, String nodeId) {
+        queryNodeMap.put(queryId, nodeId);
+    }
+
+    public java.util.Map<String, String> getQueryNodeMap() {
+        return queryNodeMap;
     }
 
     public int getQueryCount() {
@@ -61,7 +72,7 @@ public class ExecutionStage {
         return "ExecutionStage{" +
                 "stageNumber=" + stageNumber +
                 ", queryCount=" + queries.size() +
-                ", queries=" + queries.stream().map(Query::getId).toList() +
+                ", queries=" + queries.stream().map(Query::getId).collect(java.util.stream.Collectors.toList()) +
                 ", completed=" + completed +
                 '}';
     }

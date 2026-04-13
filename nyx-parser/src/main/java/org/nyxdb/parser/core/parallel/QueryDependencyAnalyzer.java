@@ -84,12 +84,24 @@ public class QueryDependencyAnalyzer {
                 Query query2 = queries.get(j);
 
                 // Check dependency from query1 to query2
-                // Only check one direction to avoid circular dependencies
-                // Earlier queries must execute before later queries if there's any conflict
                 DependencyType depType = getDependencyType(query1, query2);
                 if (depType != DependencyType.NONE) {
                     logger.debug("Found {} dependency: {} -> {}", depType, query1.getId(), query2.getId());
                     dependencies.add(new DependencyInfo(query1, query2, depType));
+                }
+            }
+        }
+
+        // Add explicit subquery dependencies: if a query's SQL contains another query's
+        // SQL as a subquery, add dependency
+        for (Query outer : queries) {
+            for (Query sub : queries) {
+                if (outer == sub)
+                    continue;
+                // If the outer query's SQL contains the subquery's SQL (and the subquery is a
+                // SELECT)
+                if (outer.getSql().contains(sub.getSql()) && sub.getType() == QueryType.SELECT) {
+                    dependencies.add(new DependencyInfo(sub, outer, DependencyType.READ_AFTER_WRITE));
                 }
             }
         }

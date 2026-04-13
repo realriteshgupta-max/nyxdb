@@ -89,6 +89,10 @@ public class PhysicalQueryPlan {
                 sb.append(" [").append(stage.getQueries().stream()
                         .map(Query::getId).reduce((a, b) -> a + ", " + b).orElse("")).append("]");
             }
+            // Include node placement if available
+            if (!stage.getQueryNodeMap().isEmpty()) {
+                sb.append(" -> Nodes: ").append(stage.getQueryNodeMap());
+            }
             sb.append("\n");
         }
         return sb.toString();

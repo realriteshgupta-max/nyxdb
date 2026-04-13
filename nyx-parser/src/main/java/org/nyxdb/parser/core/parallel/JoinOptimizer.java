@@ -175,7 +175,7 @@ public class JoinOptimizer {
 
         plan.parallelizationPotential = (double) plan.parallelizableJoins.size() / Math.max(1, joins.size());
 
-        logger.info("Parallelization potential: {:.2%}", plan.parallelizationPotential);
+        logger.info("Parallelization potential: {}%", String.format("%.2f", plan.parallelizationPotential * 100));
         return plan;
     }
 

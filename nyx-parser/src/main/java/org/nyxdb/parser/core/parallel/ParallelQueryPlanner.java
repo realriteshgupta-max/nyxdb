@@ -62,6 +62,165 @@ public class ParallelQueryPlanner {
     }
 
     /**
+     * Create a physical plan using the parser's execution order (children before
+     * parents). This helps the planner respect staged execution for nested
+     * queries.
+     */
+    public PhysicalQueryPlan createQueryPlanUsingParser(ParallelQueryParser parser, List<Query> queries) {
+        if (queries == null || queries.isEmpty()) {
+            logger.info("Creating physical query plan for 0 queries");
+            return new PhysicalQueryPlan(0);
+        }
+
+        logger.info("Creating physical query plan (using parser order) for {} queries", queries.size());
+
+        // Let parser produce an execution-ordered list (post-order: children first)
+        List<Query> ordered = parser.buildExecutionOrder(queries);
+
+        PhysicalQueryPlan plan = new PhysicalQueryPlan(ordered.size());
+
+        // Analyze dependencies (same as before)
+        List<QueryDependencyAnalyzer.DependencyInfo> dependencies = dependencyAnalyzer.analyzeDependencies(ordered);
+        logger.debug("Detected {} dependencies between queries", dependencies.size());
+
+        Map<String, Set<String>> dependencyGraph = dependencyAnalyzer.buildDependencyGraph(dependencies);
+
+        // Use the ordered list when creating execution stages to prefer
+        // subqueries-first assignment
+        List<ExecutionStage> stages = createExecutionStages(ordered, dependencyGraph, dependencies);
+        logger.info("Created execution plan with {} stages", stages.size());
+
+        for (ExecutionStage stage : stages) {
+            plan.addStage(stage);
+        }
+
+        long estimatedTime = calculateEstimatedTime(stages);
+        plan.setEstimatedTotalTimeMs(estimatedTime);
+
+        return plan;
+    }
+
+    /**
+     * Compute maximal parallel groups (layers) of queries using dependency
+     * analysis. Each set contains queries that can run in parallel (no
+     * predecessors among them).
+     */
+    public List<java.util.Set<Query>> getParallelGroupsUsingParser(ParallelQueryParser parser, List<Query> queries) {
+        List<java.util.Set<Query>> groups = new ArrayList<>();
+        if (queries == null || queries.isEmpty())
+            return groups;
+
+        // analyze dependencies
+        List<QueryDependencyAnalyzer.DependencyInfo> dependencies = dependencyAnalyzer.analyzeDependencies(queries);
+
+        // build predecessor map (target -> set of sources)
+        Map<String, java.util.Set<String>> predecessors = new HashMap<>();
+        Map<String, Query> idToQuery = queries.stream().collect(Collectors.toMap(Query::getId, q -> q));
+
+        for (Query q : queries)
+            predecessors.put(q.getId(), new HashSet<>());
+
+        for (QueryDependencyAnalyzer.DependencyInfo d : dependencies) {
+            String src = d.getSource().getId();
+            String tgt = d.getTarget().getId();
+            predecessors.computeIfAbsent(tgt, k -> new HashSet<>()).add(src);
+        }
+
+        // Kahn-like layering: collect nodes with no predecessors
+        java.util.Set<String> remaining = new HashSet<>(predecessors.keySet());
+
+        while (!remaining.isEmpty()) {
+            java.util.Set<String> layer = remaining.stream()
+                    .filter(id -> predecessors.getOrDefault(id, java.util.Collections.emptySet()).isEmpty())
+                    .collect(Collectors.toSet());
+            if (layer.isEmpty()) {
+                // cycle detected; put remaining nodes in a final group
+                java.util.Set<Query> last = remaining.stream().map(idToQuery::get).filter(java.util.Objects::nonNull)
+                        .collect(Collectors.toSet());
+                groups.add(last);
+                break;
+            }
+            // convert ids to Query objects
+            java.util.Set<Query> layerQueries = layer.stream().map(idToQuery::get).filter(java.util.Objects::nonNull)
+                    .collect(Collectors.toSet());
+            groups.add(layerQueries);
+
+            // remove layer nodes from predecessors of others
+            for (String id : layer) {
+                remaining.remove(id);
+            }
+            for (String id : remaining) {
+                java.util.Set<String> preds = predecessors.get(id);
+                if (preds != null)
+                    preds.removeAll(layer);
+            }
+        }
+
+        return groups;
+    }
+
+    /**
+     * Build a PhysicalQueryPlan where each stage corresponds to a parallel group
+     * computed from dependencies (maximal sets of queries that can run in
+     * parallel).
+     */
+    public PhysicalQueryPlan createQueryPlanFromParallelGroups(ParallelQueryParser parser, List<Query> queries) {
+        List<java.util.Set<Query>> groups = getParallelGroupsUsingParser(parser, queries);
+        PhysicalQueryPlan plan = new PhysicalQueryPlan(queries == null ? 0 : queries.size());
+        int stageNum = 0;
+        for (java.util.Set<Query> group : groups) {
+            ExecutionStage stage = new ExecutionStage(stageNum++);
+            List<Query> qlist = new ArrayList<>(group);
+            stage.addQueries(qlist);
+            assignNodesToStage(stage);
+            plan.addStage(stage);
+        }
+        plan.setEstimatedTotalTimeMs(calculateEstimatedTime(plan.getStages()));
+        return plan;
+    }
+
+    /**
+     * Export the dependency graph and parallel groups as Graphviz DOT markup.
+     * Nodes are queries (by id) and edges represent dependencies.
+     */
+    public String exportParallelGroupsDot(ParallelQueryParser parser, List<Query> queries) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("digraph ParallelGroups {\n");
+        sb.append("  rankdir=LR;\n");
+
+        // all nodes
+        for (Query q : queries) {
+            sb.append("  \"").append(q.getId()).append("\" [label=\"").append(q.getId()).append("\n")
+                    .append(escapeLabel(q.getSql())).append("\"];\n");
+        }
+
+        // dependencies edges
+        List<QueryDependencyAnalyzer.DependencyInfo> deps = dependencyAnalyzer.analyzeDependencies(queries);
+        for (QueryDependencyAnalyzer.DependencyInfo d : deps) {
+            sb.append("  \"").append(d.getSource().getId()).append("\" -> \"").append(d.getTarget().getId())
+                    .append("\" [label=\"").append(d.getType().getSymbol()).append("\"];\n");
+        }
+
+        // group subgraphs
+        List<java.util.Set<Query>> groups = getParallelGroupsUsingParser(parser, queries);
+        for (int i = 0; i < groups.size(); i++) {
+            sb.append("  subgraph cluster_group_").append(i).append(" {\n");
+            sb.append("    label=\"group_").append(i).append("\";\n");
+            for (Query q : groups.get(i)) {
+                sb.append("    \"").append(q.getId()).append("\";\n");
+            }
+            sb.append("  }\n");
+        }
+
+        sb.append("}\n");
+        return sb.toString();
+    }
+
+    private String escapeLabel(String s) {
+        return s.replaceAll("\"", "\\\"").replaceAll("\\n", "\\\n");
+    }
+
+    /**
      * Creates execution stages using a greedy approach.
      * Assigns queries to the earliest possible stage based on their dependencies.
      */
@@ -107,17 +266,47 @@ public class ParallelQueryPlanner {
             }
 
             if (stageQueries.isEmpty()) {
-                // This shouldn't happen with valid queries
-                throw new IllegalStateException("Circular dependency detected in queries");
+                // Circular dependency or unresolved ordering detected. Fall back
+                // to placing all remaining unscheduled queries into a single
+                // stage to make progress instead of throwing.
+                List<Query> remaining = new ArrayList<>();
+                for (Query q : queries) {
+                    if (!scheduled.contains(q.getId()))
+                        remaining.add(q);
+                }
+                if (remaining.isEmpty()) {
+                    break;
+                }
+                stage.addQueries(remaining);
+                assignNodesToStage(stage);
+                stages.add(stage);
+                scheduled.addAll(remaining.stream().map(Query::getId).collect(Collectors.toSet()));
+                currentStage++;
+                continue;
             }
 
             stage.addQueries(stageQueries);
+            // Assign nodes to queries in this stage (simple heuristic)
+            assignNodesToStage(stage);
             stages.add(stage);
             scheduled.addAll(stageQueries.stream().map(Query::getId).collect(Collectors.toSet()));
             currentStage++;
         }
 
         return stages;
+    }
+
+    // Simple node assignment: pick from a small set of available nodes based on
+    // a hash of the query's read tables (or query id fallback).
+    private final List<String> availableNodes = List.of("nodeA", "nodeB", "nodeC");
+
+    private void assignNodesToStage(ExecutionStage stage) {
+        for (Query q : stage.getQueries()) {
+            String key = q.getReadTables().stream().sorted().reduce((a, b) -> a + "," + b).orElse(q.getId());
+            int idx = Math.abs(key.hashCode()) % availableNodes.size();
+            String node = availableNodes.get(idx);
+            stage.assignNodeToQuery(q.getId(), node);
+        }
     }
 
     /**

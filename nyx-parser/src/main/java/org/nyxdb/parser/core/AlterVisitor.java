@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.nyxdb.parser.core.models.ColumnInfo;
 import org.nyxdb.parser.core.models.TableInfo;
+import org.nyxdb.parser.core.NyxDbBaseVisitor;
 
 /**
  * Visitor that applies ALTER TABLE actions to tables discovered earlier.

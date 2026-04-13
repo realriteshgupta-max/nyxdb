@@ -239,8 +239,8 @@ public class DistributedSelectExample {
             logger.info("Execution Result: {}", result);
             logger.info("Actual Execution Time: {}ms (estimated: {}ms)",
                     result.executionTimeMs, distributedPlan.estimatedExecutionTimeMs);
-            logger.info("Parallel Efficiency: {:.2%}",
-                    (double) distributedPlan.estimatedExecutionTimeMs / result.executionTimeMs);
+            logger.info("Parallel Efficiency: {}%", String.format("%.2f",
+                    ((double) distributedPlan.estimatedExecutionTimeMs / result.executionTimeMs) * 100));
         } catch (Exception e) {
             logger.error("Execution failed: {}", e.getMessage());
         }

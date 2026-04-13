@@ -11,6 +11,8 @@
 
     <modules>
         <module>nyx-parser</module>
+        <module>nyx-duckdb</module>
+        <module>nyx-flight</module>
     </modules>
 
     <properties>
